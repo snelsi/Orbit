@@ -9,7 +9,7 @@ const Main = styled.main`
   width: 100%;
   overflow: hidden;
   & svg {
-    --size: min(80vw, 80vh);
+    --size: min(92vw, 80vh);
     height: var(--size);
     width: var(--size);
   }
