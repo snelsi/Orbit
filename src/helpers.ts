@@ -35,3 +35,20 @@ export const getRandomConfig = (svgSize: number) => {
   }
   return config;
 };
+
+// Get one random star
+export const getStar = () => ({
+  id: nanoid(),
+  x: `${random(0, 100)}%`,
+  y: `${random(0, 100)}%`,
+  offset: `-${random(0, 20)}s`,
+});
+
+// Get random stars
+export const getStars = () => {
+  const stars = [];
+  for (let i = 0; i < 200; i++) {
+    stars.push(getStar());
+  }
+  return stars;
+};

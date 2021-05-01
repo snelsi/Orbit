@@ -1,5 +1,36 @@
 import * as React from "react";
 import chroma from "chroma-js";
+import styled, { keyframes } from "styled-components";
+
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+`;
+
+const G = styled.g`
+  animation: ${rotate} linear infinite;
+  animation-duration: var(--animation-duration);
+  transform-origin: 50% 50%;
+
+  & circle.orbit {
+    --line-percent: calc(var(--line-length) / 100);
+    transition: stroke 0.2s ease-out;
+    stroke: white;
+    stroke-dasharray: var(--line-dasharray);
+    stroke-linecap: round;
+    stroke-width: var(--line-width);
+  }
+
+  &:hover {
+    & circle.orbit {
+      stroke: var(--line-hover-color);
+    }
+  }
+`;
 
 const f = chroma.scale([
   "#8C00FC",
@@ -75,7 +106,7 @@ const Circle: React.FC<CircleProps> = ({
   if (duration) groupConfig["--animation-duration"] = duration;
 
   return (
-    <g style={groupConfig}>
+    <G style={groupConfig}>
       <circle
         r={r}
         cx="50%"
@@ -94,7 +125,7 @@ const Circle: React.FC<CircleProps> = ({
         fill="none"
         opacity="0"
       />
-    </g>
+    </G>
   );
 };
 
