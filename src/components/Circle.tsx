@@ -1,4 +1,16 @@
 import * as React from "react";
+import chroma from "chroma-js";
+
+const f = chroma.scale([
+  "#8C00FC",
+  "#3500FF",
+  "#01FE01",
+  "#FFFE37",
+  "#FF8600",
+  "#ED0003",
+]);
+
+type CSSProperties = { [x: string]: string | number };
 
 const getTotalLength = (elem: SVGCircleElement | null) => {
   if (!elem) return 0;
@@ -17,6 +29,7 @@ interface CircleProps {
   repeat?: number; // How many times to repeat the pattern
   width?: string; // Line width
   duration?: string; // Animation duration
+  percent?: number; // 0 - Outter, 1 - Inner
 }
 const Circle: React.FC<CircleProps> = ({
   r,
@@ -24,6 +37,7 @@ const Circle: React.FC<CircleProps> = ({
   pattern,
   duration,
   repeat = 1,
+  percent = 0,
 }) => {
   const circleRef = React.useRef<SVGCircleElement>(null);
 
@@ -32,7 +46,7 @@ const Circle: React.FC<CircleProps> = ({
   React.useEffect(() => setRefAcquired(true), []);
   React.useEffect(() => {}, [refAcquired]);
 
-  const config: { [x: string]: string | number } = {
+  const config: CSSProperties = {
     "--line-radius": r,
     "--line-length": getTotalLength(circleRef.current),
   };
@@ -54,15 +68,33 @@ const Circle: React.FC<CircleProps> = ({
       .join(" ") || "";
   config["--line-dasharray"] = dasharray;
 
+  // Add rainbow hover color
+  const hoverColor = f(percent).hex();
+  const groupConfig: CSSProperties = {
+    "--line-hover-color": hoverColor,
+  };
+
   return (
-    <circle
-      r={r}
-      cx="50%"
-      cy="50%"
-      style={config}
-      ref={circleRef}
-      fill="none"
-    />
+    <g style={groupConfig}>
+      <circle
+        r={r}
+        cx="50%"
+        cy="50%"
+        style={config}
+        ref={circleRef}
+        fill="none"
+        className="orbit"
+      />
+      <circle
+        r={r}
+        cx="50%"
+        cy="50%"
+        stroke="transparent"
+        strokeWidth="12px"
+        fill="none"
+        opacity="0"
+      />
+    </g>
   );
 };
 

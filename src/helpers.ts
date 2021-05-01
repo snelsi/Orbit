@@ -21,13 +21,16 @@ export const getRandomPattern = () => {
 // Get random circles
 export const getRandomConfig = (svgSize: number) => {
   const config = [];
-  for (let i = svgSize / 6; i < svgSize / 2; i += 12) {
+  const outerRadius = svgSize / 2;
+  const innerRadius = svgSize / 6;
+  for (let i = outerRadius; i > innerRadius; i -= 12) {
     config.push({
       id: nanoid(),
       r: `${i}px`,
       ...getRandomPattern(),
       width: "2px",
       duration: `${random(20, 40)}s`,
+      percent: (i - innerRadius) / (outerRadius - innerRadius),
     });
   }
   return config;

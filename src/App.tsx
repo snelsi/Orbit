@@ -24,11 +24,9 @@ const App = () => (
         </filter>
       </defs>
 
-      <g>
-        {config.map(({ id, ...props }) => (
-          <Circle {...props} key={id} />
-        ))}
-      </g>
+      {config.map(({ id, ...props }) => (
+        <Circle {...props} key={id} />
+      ))}
     </SVG>
   </Main>
 );
