@@ -14,6 +14,7 @@ const rotate = keyframes`
 const G = styled.g`
   animation: ${rotate} linear infinite;
   animation-duration: var(--animation-duration);
+  cursor: pointer;
   transform-origin: 50% 50%;
 
   & circle.orbit {
@@ -25,7 +26,8 @@ const G = styled.g`
     stroke-width: var(--line-width);
   }
 
-  &:hover {
+  &:hover,
+  &[data-active="true"] {
     & circle.orbit {
       stroke: var(--line-hover-color);
     }
@@ -77,6 +79,12 @@ const Circle: React.FC<CircleProps> = ({
   React.useEffect(() => setRefAcquired(true), []);
   React.useEffect(() => {}, [refAcquired]);
 
+  const [active, setActive] = React.useState(false);
+  const toggleGlow = (e: React.MouseEvent) => {
+    e?.stopPropagation();
+    setActive((cur) => !cur);
+  };
+
   const config: CSSProperties = {
     "--line-radius": r,
     "--line-length": getTotalLength(circleRef.current),
@@ -106,7 +114,7 @@ const Circle: React.FC<CircleProps> = ({
   if (duration) groupConfig["--animation-duration"] = duration;
 
   return (
-    <G style={groupConfig}>
+    <G style={groupConfig} onClick={toggleGlow} data-active={active}>
       <circle
         r={r}
         cx="50%"
