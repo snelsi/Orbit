@@ -10,6 +10,20 @@ const config = getRandomConfig(svgSize);
 const App = () => (
   <Main>
     <SVG viewBox={`0 0 ${svgSize} ${svgSize}`}>
+      <defs>
+        <filter id="glow">
+          <feGaussianBlur
+            className="blur"
+            result="coloredBlur"
+            stdDeviation="2.5"
+          />
+          <feMerge>
+            <feMergeNode in="coloredBlur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+      </defs>
+
       <g>
         {config.map(({ id, ...props }) => (
           <Circle {...props} key={id} />
