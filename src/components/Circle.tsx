@@ -51,7 +51,6 @@ const Circle: React.FC<CircleProps> = ({
     "--line-length": getTotalLength(circleRef.current),
   };
   if (width) config["--line-width"] = width;
-  if (duration) config["--animation-duration"] = duration;
 
   // Parse incoming pattern and convert it to 'stroke-dasharray'
 
@@ -73,6 +72,7 @@ const Circle: React.FC<CircleProps> = ({
   const groupConfig: CSSProperties = {
     "--line-hover-color": hoverColor,
   };
+  if (duration) groupConfig["--animation-duration"] = duration;
 
   return (
     <g style={groupConfig}>
