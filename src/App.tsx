@@ -15,7 +15,7 @@ const App = () => (
           <feGaussianBlur
             className="blur"
             result="coloredBlur"
-            stdDeviation="2.5"
+            stdDeviation="6"
           />
           <feMerge>
             <feMergeNode in="coloredBlur" />
