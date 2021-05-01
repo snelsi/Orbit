@@ -5,6 +5,7 @@ import Circle from "components/Circle";
 import Main from "components/Main";
 import SVG from "components/Svg";
 import Starfield from "components/Starfield";
+import GithubLink from "components/GithubLink";
 
 const svgSize = 1000;
 
@@ -35,6 +36,8 @@ const App = () => (
         <Circle {...props} key={id} />
       ))}
     </SVG>
+
+    <GithubLink />
   </Main>
 );
 
