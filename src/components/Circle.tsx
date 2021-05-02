@@ -29,8 +29,10 @@ const G = styled.g`
   &[data-active="true"] circle.orbit {
     stroke: var(--line-active-color);
   }
-  &:hover circle.orbit {
-    stroke: var(--line-hover-color);
+  @media (hover: hover) {
+    &:hover circle.orbit {
+      stroke: var(--line-hover-color);
+    }
   }
 `;
 
