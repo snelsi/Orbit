@@ -25,7 +25,6 @@ export const getRandomConfig = (svgSize: number) => {
   const innerRadius = svgSize / 6;
   for (let i = outerRadius; i > innerRadius; i -= 12) {
     config.push({
-      id: nanoid(),
       r: `${i}px`,
       ...getRandomPattern(),
       width: "2px",

@@ -54,8 +54,8 @@ const App = () => {
           </defs>
         )}
 
-        {config.map(({ id, ...props }) => (
-          <Circle {...props} key={id} />
+        {config.map((orbit) => (
+          <Circle {...orbit} key={orbit.r} />
         ))}
       </SVG>
 
