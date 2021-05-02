@@ -19,18 +19,18 @@ const G = styled.g`
 
   & circle.orbit {
     --line-percent: calc(var(--line-length) / 100);
-    transition: stroke 0.2s ease-out;
+    transition: stroke 0.1s ease-out;
     stroke: white;
     stroke-dasharray: var(--line-dasharray);
     stroke-linecap: round;
     stroke-width: var(--line-width);
   }
 
-  &:hover,
-  &[data-active="true"] {
-    & circle.orbit {
-      stroke: var(--line-hover-color);
-    }
+  &[data-active="true"] circle.orbit {
+    stroke: var(--line-active-color);
+  }
+  &:hover circle.orbit {
+    stroke: var(--line-hover-color);
   }
 `;
 
@@ -107,8 +107,11 @@ const Circle: React.FC<CircleProps> = ({
   config["--line-dasharray"] = dasharray;
 
   // Add rainbow hover color
-  const hoverColor = f(percent).hex();
+  const color = f(percent);
+  const activeColor = color.hex();
+  const hoverColor = color.brighten().hex();
   const groupConfig: CSSProperties = {
+    "--line-active-color": activeColor,
     "--line-hover-color": hoverColor,
   };
   if (duration) groupConfig["--animation-duration"] = duration;
