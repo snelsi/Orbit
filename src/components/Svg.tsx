@@ -10,6 +10,7 @@ const SVG = styled.svg`
   overflow: visible;
   height: var(--size);
   width: var(--size);
+  z-index: 1;
 
   &[data-glow="true"] {
     filter: url(#glow);
