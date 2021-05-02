@@ -6,7 +6,7 @@ export const random = (min = 0, max = 10) =>
 
 // Get one random circles
 export const getRandomPattern = () => {
-  const lines = random(1, random(1, random(2, 3)));
+  const lines = random(1, random(1, 4));
   const pattern: number[] = [];
   for (let i = 0; i < lines; i += 1) {
     pattern.push(random(0.1, random(2, 8)));
