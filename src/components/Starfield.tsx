@@ -12,16 +12,27 @@ const rotate = keyframes`
   }
 `;
 
-const Svg = styled.svg`
+const Wrapper = styled.div`
   position: fixed;
   left: 0;
   top: 0;
   height: 100%;
   width: 100%;
   z-index: 0;
-  & g {
-    animation: ${rotate} 400s linear infinite;
-    transform-origin: 50% 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  & svg {
+    height: max(100vw, 100vh);
+    width: max(100vw, 100vh);
+
+    & g {
+      animation: ${rotate} 400s linear infinite;
+      transform-origin: 50% 50%;
+    }
   }
 `;
 
@@ -29,20 +40,21 @@ interface IStar {
   id: string;
   x: string;
   y: string;
-  offset: string;
 }
 
 const stars: IStar[] = getStars();
 
 interface StarfieldProps {}
 const Starfield: React.FC<StarfieldProps> = () => (
-  <Svg className="starfield">
-    <g>
-      {stars.map((star) => (
-        <Star {...star} key={star.id} />
-      ))}
-    </g>
-  </Svg>
+  <Wrapper>
+    <svg className="starfield">
+      <g>
+        {stars.map((star) => (
+          <Star {...star} key={star.id} />
+        ))}
+      </g>
+    </svg>
+  </Wrapper>
 );
 
 export default Starfield;

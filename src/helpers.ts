@@ -41,7 +41,6 @@ export const getStar = () => ({
   id: nanoid(),
   x: `${random(0, 100)}%`,
   y: `${random(0, 100)}%`,
-  offset: `-${random(0, 20)}s`,
 });
 
 // Get random stars
