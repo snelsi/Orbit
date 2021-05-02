@@ -11,7 +11,7 @@ const SVG = styled.svg`
   height: var(--size);
   width: var(--size);
 
-  &[data-is-desktop="true"] {
+  &[data-glow="true"] {
     filter: url(#glow);
   }
 `;
