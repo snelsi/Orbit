@@ -1,6 +1,7 @@
 {
   "name": "orbit",
   "version": "0.1.0",
+  "license": "MIT",
   "dependencies": {
     "chroma-js": "^2.1.1",
     "nanoid": "^3.1.22",
@@ -21,9 +22,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "build": "react-scripts build"
   },
   "eslintConfig": {
     "extends": [
