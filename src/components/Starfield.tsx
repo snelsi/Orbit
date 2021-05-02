@@ -26,6 +26,7 @@ const Wrapper = styled.div`
   overflow: hidden;
 
   & svg {
+    display: block;
     height: max(100vw, 100vh);
     width: max(100vw, 100vh);
 
