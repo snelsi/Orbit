@@ -2,19 +2,21 @@ import { nanoid } from "nanoid";
 
 // Get random integer
 export const random = (min = 0, max = 10) =>
-  Math.floor(Math.random() * (max - min)) + min;
+  Math.floor(min + Math.random() * (max + 1 - min));
 
 // Get one random circles
 export const getRandomPattern = () => {
-  const lines = random(1, random(1, 4));
+  const lines = random(1, random(1, 2));
   const pattern: number[] = [];
   for (let i = 0; i < lines; i += 1) {
-    pattern.push(random(0.1, random(2, 8)));
+    pattern.push(random(1, random(10, 60)) / 10);
   }
 
   return {
-    repeat: random(random(10, 20), 80),
+    repeat: random(10, random(50, 75)),
     pattern,
+    width: "2px",
+    duration: `${random(20, 40)}s`,
   };
 };
 
@@ -27,8 +29,6 @@ export const getRandomConfig = (svgSize: number) => {
     config.push({
       r: `${i}px`,
       ...getRandomPattern(),
-      width: "2px",
-      duration: `${random(20, 40)}s`,
       percent: (i - innerRadius) / (outerRadius - innerRadius),
     });
   }
