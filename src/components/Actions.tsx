@@ -45,9 +45,17 @@ const Actions = styled.div`
       height: 24px;
     }
 
-    &:hover,
-    &:focus {
+    &:focus,
+    &:active {
       opacity: 1;
+    }
+    &:focus:not(:focus-visible) {
+      opacity: 0.5;
+    }
+    @media (hover: hover) {
+      &:hover {
+        opacity: 1 !important;
+      }
     }
   }
 `;
