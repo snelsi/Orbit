@@ -1,5 +1,3 @@
-import { nanoid } from "nanoid";
-
 // Get random integer
 export const random = (min = 0, max = 10) =>
   Math.floor(min + Math.random() * (max + 1 - min));
@@ -37,7 +35,6 @@ export const getRandomConfig = (svgSize: number) => {
 
 // Get one random star
 export const getStar = () => ({
-  id: nanoid(),
   x: `${random(0, 100)}%`,
   y: `${random(0, 100)}%`,
 });
@@ -46,7 +43,7 @@ export const getStar = () => ({
 export const getStars = () => {
   const stars = [];
   for (let i = 0; i < 200; i++) {
-    stars.push(getStar());
+    stars.push({ ...getStar(), id: String(i) });
   }
   return stars;
 };
